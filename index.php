@@ -1,7 +1,9 @@
-<?php include('./views/header.php'); ?>
+<?php include('views\header.php'); 
+    $tasklist = null;
+?>
     <section id="runningList">
         <ul>
-            <?php foreach($tasklist as $task) : ?>
+            <?php if(!$tasklist) { foreach($tasklist as $task) : ?>
                 <li>
                     <h5>
                         <?php echo $task['taskName']; ?>
@@ -10,11 +12,16 @@
                         <?php echo $task['taskDesc']; ?>
                     </p>
                 </li>
-            <?php endforeach; ?>
+            <?php endforeach; }
+            else { ?>
+                <p class="text-center">
+                    No items in the list.
+                </p>
+            <?php } ?>
         </ul>
     </section>
-    <section id="newItemForm">
-        <?php include('todoForm.php'); ?>
+    <section id="newTaskForm">
+        <?php include('newTask.php'); ?>
     </section>
 <br>
-<?php include('./views/footer.php'); ?>
+<?php include('views\footer.php'); ?>
