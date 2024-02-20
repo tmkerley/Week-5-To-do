@@ -6,7 +6,7 @@ function create_task($taskName, $taskDesc, $dueDate) {
     //a new task isn't completed
     $completed = FALSE;
 
-    $query = 'INSERT INTO task
+    $query = 'INSERT INTO tasks
             (name, description, dueDate, completed)
                 VALUES
                 (:taskName, :taskDesc, :dueDate, :completed)';
@@ -15,12 +15,31 @@ function create_task($taskName, $taskDesc, $dueDate) {
     $statement->bindValue(':taskDesc, $taskDesc');
     $statement->bindValue(':dueDate, $dueDate');
     $statement->bindValue(':completed, $completed');
+    $statement->execute();
+    $statement->closeCursor();
 }
 
 function delete_task($taskName) {
     global $db;
 
-    $query = 'DELETE on task (name)';
+    $query = 'DELETE FROM tasks 
+                WHERE taskName = :taskName';
     $statement = $db->prepare($query);
+    $statement->bindValue(':taskName', $taskName);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function get_all_active_tasks() {
+    global $db;
+
+    $query = 'SELECT * FROM tasks
+                WHERE completed == FALSE';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':completed', $completed);
+    $statement->execute();
+    $taskList = $statment->fetchAll();
+    $statement->closeCursor();
+    return $taskList;
 }
 ?>

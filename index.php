@@ -1,9 +1,11 @@
-<?php include('views\header.php'); 
-    $tasklist = null;
+<?php 
+    include('views\header.php'); 
+    require('model\task_db.php');
+    // $taskList = null;
 ?>
     <section id="runningList">
         <ul>
-            <?php if(!$tasklist) { foreach($tasklist as $task) : ?>
+            <?php if(!$taskList) { foreach($taskList as $task) : ?>
                 <li>
                     <h5>
                         <?php echo $task['taskName']; ?>
