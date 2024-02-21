@@ -4,7 +4,7 @@
 ?>
     <section id="runningList">
         <ul>
-            <?php if(!$taskList) { foreach($taskList as $task) : ?>
+            <?php if($taskList) { foreach($taskList as $task) : ?>
                 <li>
                     <h5>
                         <?php echo $task['taskName']; ?>

@@ -4,9 +4,13 @@ function create_task($taskName, $taskDesc, $dueDate) {
     global $db;
     
     //a new task isn't completed
-    $completed = FALSE;
+    $completed = 0;
+    //a due date wasn't assigned
+    if(!$dueDate) {
+        $dueDate = date('m/d/Y h:i:s a', time());
+    }
 
-    $query = 'INSERT INTO tasks
+    $query = 'INSERT INTO "tasks"
             (name, description, dueDate, completed)
                 VALUES
                 (:taskName, :taskDesc, :dueDate, :completed)';
@@ -34,11 +38,11 @@ function get_all_active_tasks() {
     global $db;
 
     $query = 'SELECT * FROM tasks
-                WHERE completed == FALSE';
+                WHERE completed = 0';
     $statement = $db->prepare($query);
-    $statement->bindValue(':completed', $completed);
+    //$statement->bindValue(':completed', $completed);
     $statement->execute();
-    $taskList = $statment->fetchAll();
+    $taskList = $statement->fetchAll();
     $statement->closeCursor();
     return $taskList;
 }

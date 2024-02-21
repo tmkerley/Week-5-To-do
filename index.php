@@ -1,5 +1,6 @@
 <?php 
     include('views\header.php'); 
+    require('model\database.php');
     require('model\task_db.php');
     // $taskList = null;
 
