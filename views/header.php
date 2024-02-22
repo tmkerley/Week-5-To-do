@@ -7,8 +7,8 @@
     <title>To-do List App</title>
     <link rel="stylesheet" href="views\css\bootstrap.min.css">
 </head>
-<body class="bg-light-subtle">
-    <main>
-        <header>
+<body>
+    <main class="bg-secondary-subtle">
+        <header class="text-center">
             <h1><p class="text-cneter">To-do List</p></h1>
         </header>

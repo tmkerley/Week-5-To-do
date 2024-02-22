@@ -1,8 +1,7 @@
 <?php 
-    include('views\header.php'); 
     require('model\database.php');
     require('model\task_db.php');
-    // $taskList = null;
+    include('views\header.php'); 
 
     //checks if no action was taken to get to the page, eg first load.
     $action = filter_input(INPUT_POST, 'action');
@@ -30,4 +29,5 @@
     // delete task
     // show new task page
 
+    include('views\footer.php');
 ?>
