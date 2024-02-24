@@ -10,5 +10,9 @@
 <body>
     <main class="bg-secondary-subtle">
         <header class="text-center">
-            <h1><p class="text-cneter">To-do List</p></h1>
+            <h1>
+                <a href=".">
+                    <p class="text-cneter">To-do List</p>
+                </a>
+            </h1>
         </header>

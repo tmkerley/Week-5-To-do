@@ -16,12 +16,6 @@
 
     //checks what to run
     switch($action){
-        case 'listActiveTasks':    
-            // get active task list
-            $taskList = get_all_active_tasks();
-            // display task list
-            include('views\taskListDisplay.php');
-            break;
         case 'addNewTask':
             // filter & get form data
             //add task
@@ -40,17 +34,58 @@
                 header("Location: .");
             }
             break;
-        case 'deleteTask':
+
+        case 'listActiveTasks':    
+            // get active task list and display
+            $updateID = NULL;
+            $taskList = get_all_active_tasks();
+            include('views\taskListDisplay.php');
+            break;
+
+        case 'Update':
+            // filter and get task ID
+            // validate input
+            // select old data
+            // compare and if updated data
+            $updateID = filter_input(INPUT_POST, 'updateID', FILTER_VALIDATE_INT);
+            if(!$updateID){
+                // if updateID isn't set, assign to the task
+                $updateID = filter_input(INPUT_POST, 'taskID', FILTER_VALIDATE_INT);
+                $taskList = get_all_active_tasks();
+                include('views\taskListDisplay.php');
+            }
+            else if($updateID != FALSE) {
+                // perform update
+                update_task($updateID, $taskDesc, $taskName, $dueDate);
+                // clear update
+                $updateID = NULL;
+                // redirect
+                header("Location: .");
+            }
+            break;
+
+        case 'Complete':
+            // filter id
+            // send task complete update
+            // redirect
+            $taskID = filter_input(INPUT_POST, 'taskID', FILTER_VALIDATE_INT);
+            if($taskID != NULL && $taskID != FALSE) {
+                complete_task($taskID);
+                header("Location: .");
+            }    
+
+        case 'Delete':
             //delete a task using the PRG pattern
             // assign inputs
             // filter inputs
             // delete and redirect
-            $taskID = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
+            $taskID = filter_input(INPUT_POST, 'taskID', FILTER_VALIDATE_INT);
             if($taskID != NULL && $taskID != FALSE) {
-                detele_task($taskID);
+                delete_task($taskID);
                 header("Location: .");
             }
             break;
+            
         default:
             echo "Default action taken. There's something wrong.";
             break;
