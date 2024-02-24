@@ -1,12 +1,18 @@
 <div class="card border-info w-auto">
-    <div class="card-header bg-info p-2">
+    <div class="card-header bg-info p-2" id="$task['taskName']">
         <?php echo $task['taskName']; ?>
     </div>
     <ul class="list-group list-group-flush">
-        <?php if($task['taskDesc']) { ?>
-            <li class="list-group-item"><?php echo $task['dueDate']; ?></li>
+        <?php if($task['dueDate'] && $task['dueDate'] != '0000-00-00') { ?>
+            <li class="list-group-item">
+                <?php echo $task['dueDate']; ?>
+            </li>
+        <?php } 
+        if($task['taskDesc']) { ?>
+            <li class="list-group-item">
+                <?php echo $task['taskDesc']; ?>
+            </li>
         <?php } ?>
-        <li class="list-group-item"><?php echo $task['taskDesc']; ?></li>
         <li class="list-group-item">
             <form action="." method="post" name="action" id="alter<?php echo $task['taskID']; ?>">
                 <input type="hidden" name="taskID" 

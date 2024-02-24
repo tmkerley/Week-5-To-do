@@ -20,9 +20,9 @@
             // filter & get form data
             //add task
             //rediect to display tasks
+            //future add for checking date input validations
             $taskName = filter_input(INPUT_POST, 'taskName');
             $taskDesc = filter_input(INPUT_POST, 'taskDesc');
-            //future add for checking date input validations
             $dueDate = filter_input(INPUT_POST, 'dueDate');
             
             if($taskName == NULL || $taskName ==  FALSE) {
@@ -30,7 +30,7 @@
                 include ('views\error.php');
             }
             else {
-                create_task($taskName, $taskDesc, $dueDate);
+                create_task($taskName, $dueDate, $taskDesc);
                 header("Location: .");
             }
             break;
@@ -56,7 +56,11 @@
             }
             else if($updateID != FALSE) {
                 // perform update
-                update_task($updateID, $taskDesc, $taskName, $dueDate);
+                //future add for checking date input validations
+                $taskName = filter_input(INPUT_POST, 'taskName');
+                $dueDate = filter_input(INPUT_POST, 'dueDate');
+                $taskDesc = filter_input(INPUT_POST, 'taskDesc');
+                update_task($updateID, $taskName, $dueDate, $taskDesc);
                 // clear update
                 $updateID = NULL;
                 // redirect
@@ -85,7 +89,7 @@
                 header("Location: .");
             }
             break;
-            
+
         default:
             echo "Default action taken. There's something wrong.";
             break;
