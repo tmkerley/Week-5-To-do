@@ -1,4 +1,4 @@
-    <section id="runningList" class="container-lg justify-content-center bg-secondary-subtle">
+    <section id="taskList" class="container-lg justify-content-center bg-secondary-subtle">
         <ul>
             <?php if($taskList) { foreach($taskList as $task) : ?>
                 <div class="card border-info w-auto">
@@ -26,9 +26,6 @@
                     No items in the list.
                 </p>
             <?php } ?>
+            <?php include('newTask.php'); ?>
         </ul>
     </section>
-    <section id="newTaskForm">
-        <?php include('newTask.php'); ?>
-    </section>
-<br>
