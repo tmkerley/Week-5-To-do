@@ -11,12 +11,20 @@
                         <?php } ?>
                         <li class="list-group-item"><?php echo $task['taskDesc']; ?></li>
                         <li class="list-group-item">
-                            <a href="#" class="btn btn-success">Complete</a>
-                            <a href="#" class="btn btn-primary">Update</a>
-                            <span class="badge rounded-pill">
-                            <a href="#" class="btn btn-danger">Delete</a>
-                        </span>
-                        </span>
+                            <form action="." method="post">
+                                <input type="hidden" name="action" value="update">
+                                <input type="hidden" name="taskID" 
+                                       value="<?php echo $task['taskID']; ?>">
+                                <input type="submit" value="Complete" class="btn btn-success">
+                            </form>
+                            <form action="." method="post">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                            </form>
+                            <form action="." method="post">    
+                                <span class="badge rounded-pill">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                                </span>
+                            </form>
                         </li>
                     </ul>
                 </div>
