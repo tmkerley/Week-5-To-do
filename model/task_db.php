@@ -24,7 +24,7 @@ function create_task($taskName, $dueDate, $taskDesc) {
 function get_all_active_tasks() {
     global $db;
     $query = 'SELECT * FROM todoitems
-                WHERE completed = 0 || complete = NULL';
+                WHERE completed = 0 || completed = NULL';
     $statement = $db->prepare($query);
     $statement->execute();
     $taskList = $statement->fetchAll();
@@ -38,7 +38,7 @@ function update_task($taskID, $taskName, $dueDate, $taskDesc) {
             SET title = :taskName, 
                 dueDate = :dueDate,
                 description = :taskDesc    
-            WHERE taskID = :taskID';
+            WHERE itemNum = :taskID';
     $statement = $db->prepare($query);
     $statement->bindValue(':taskID', $taskID);
     $statement->bindValue(':taskName', $taskName);
